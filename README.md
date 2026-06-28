@@ -25,3 +25,29 @@ A lightweight Computer Vision pipeline developed to detect human bodies and pede
       *Scale Factor (1.2): Controls how much the image size is reduced at each image scale.
       **Min Neighbors
 
+
+
+
+
+# Real-Time Human Pose Estimation & Tracking using YOLOv8
+
+A state-of-the-art Computer Vision pipeline leveraging the *YOLOv8-Pose architecture to perform high-speed human detection, tracking, and skeletal keypoint extraction from video streams. This system processes dynamic video inputs natively on CUDA, delivering raw localization tensors for downstream behavioral analysis.
+
+## 📊 Project Highlights
+ *Model Backbone: Implemented YOLOv8-Pose (`yolov8n-pose.pt`) via the Ultralytics framework.
+ *Hardware Acceleration: Fully bound to CUDA GPU execution (`device='cuda:0'`) for low-latency inference.
+ *Data Extraction: Successfully parsed prediction objects into bounding box coordinates, class confidence levels, and segmentation/pose indices.
+
+---
+
+## 🏗️ Technical Workflow & Tensor Anatomy
+
+1. Video Streaming Pipeline:
+    Handled directory pathing using Python's native `os.path` module to isolate local video assets (`.mov` / `.mp4` formats).
+    Loaded the source stream into the YOLO inference engine with a tuned confidence threshold (`conf=0.5`).
+
+2. Inference Metrics & Speed:
+    Benchmark performance verified at: *2.4ms preprocess, 20.2ms inference, and 1.4ms postprocess per image frame, running comfortably above real-time requirements (approx. 40+ FPS).
+
+3. Tensor Extraction & Parsing:
+    *Bounding Boxes (`boxes.xyxy`):* Extracted accurate spatial coordinates representing $
